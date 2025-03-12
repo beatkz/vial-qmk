@@ -1,0 +1,59 @@
+{
+    "manufacturer": "Keiji MOMOSE",
+    "keyboard_name": "beatkz/mjcon23",
+    "maintainer": "beatkz",
+    "bootloader": "rp2040",
+    "diode_direction": "COL2ROW",
+    "features": {
+        "bootmagic": true,
+        "command": false,
+        "console": false,
+        "extrakey": true,
+        "mousekey": true,
+        "nkro": true
+    },
+    "matrix_pins": {
+        "direct":[
+            ["GP23", "GP0", "GP1", "GP2",  "GP3",   null,  null,  null,  null,  null,  null,  null, null, null],
+            ["GP22", "GP4", "GP5", "GP6",  "GP7",   null,  null,  null,  null,  null,  null,  null, null, null],
+            ["GP21","GP20","GP19","GP18", "GP17", "GP16","GP15","GP14","GP13","GP12","GP11","GP10","GP9","GP8"]
+        ]
+    },
+    "processor": "RP2040",
+    "url": "https://github.com/beatkz/",
+    "usb": {
+        "device_version": "1.0.0",
+        "pid": "0x0002",
+        "vid": "0x2859"
+    },
+    "layouts": {
+        "LAYOUT": {
+            "layout": [
+                {"matrix":[0,0], "x":0.5, "y":0},
+                {"matrix":[0,1], "x":10.25, "y":0.5},
+                {"matrix":[0,2], "x":11.25, "y":0.25},
+                {"matrix":[0,3], "x":12.25, "y":0},
+                {"matrix":[0,4], "x":13.25, "y":0},
+                {"matrix":[1,0], "x":0, "y":1, "w":2, "h":2},
+                {"matrix":[1,1], "x":10.25, "y":1.5},
+                {"matrix":[1,2], "x":11.25, "y":1.25},
+                {"matrix":[1,3], "x":12.25, "y":1},
+                {"matrix":[1,4], "x":13.25, "y":1},
+                {"matrix":[2,0], "x":0, "y":3.75},
+                {"matrix":[2,1], "x":1, "y":3.75},
+                {"matrix":[2,2], "x":2, "y":3.75},
+                {"matrix":[2,3], "x":3, "y":3.75},
+                {"matrix":[2,4], "x":4, "y":3.75},
+                {"matrix":[2,5], "x":5, "y":3.75},
+                {"matrix":[2,6], "x":6, "y":3.75},
+                {"matrix":[2,7], "x":7, "y":3.75},
+                {"matrix":[2,8], "x":8, "y":3.75},
+                {"matrix":[2,9], "x":9, "y":3.75},
+                {"matrix":[2,10], "x":10, "y":3.75},
+                {"matrix":[2,11], "x":11, "y":3.75},
+                {"matrix":[2,12], "x":12, "y":3.75},
+                {"matrix":[2,13], "x":13, "y":3.75}
+            ]
+        }
+    }
+}

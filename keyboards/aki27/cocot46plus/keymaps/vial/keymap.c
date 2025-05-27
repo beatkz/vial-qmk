@@ -22,7 +22,11 @@ enum layer_number {
     _BASE,
     _LOWER,
     _RAISE,
-    _TRACKBALL
+    _TRACKBALL,
+    _L4,
+    _L5,
+    _L6,
+    _L7
 };
 
 #define LW_MHEN LT(1,KC_INT5)  // lower
@@ -40,7 +44,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                          KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_MINS,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
                         KC_LGUI, DEL_ALT,   LW_MHEN,  KC_SPC, KC_MS_BTN1,             KC_MS_BTN2,  KC_ENT, RS_HENK, KC_BSPC,  KC_ESC,
-                                                                 XXXXXXX, KC_MS_BTN3,  XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX
+                                                                 XXXXXXX,    SCRL_MO,  XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
   [_LOWER] = LAYOUT(
@@ -51,8 +55,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       KC_LSFT,  KC_GRV, KC_TILD, KC_NUBS, KC_PIPE, XXXXXXX,                                        KC_EQL, KC_PLUS, KC_LABK, KC_RABK, KC_QUES, KC_UNDS,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-                        KC_LGUI, DEL_ALT, KC_TRNS,  KC_SPC,   KC_MS_BTN4,             KC_MS_BTN5,  KC_ENT,   TT(3), KC_BSPC,  KC_ESC,
-                                                                 XXXXXXX, KC_MS_BTN3,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+                        KC_LGUI, DEL_ALT, KC_TRNS,  KC_SPC,   _______,                  _______,  KC_ENT,   TT(3), KC_BSPC,  KC_ESC,
+                                                                 XXXXXXX, _______,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
   [_RAISE] = LAYOUT(
@@ -64,7 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_LSFT,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,                                       KC_LEFT, KC_DOWN, KC_RGHT,  KC_DOT, KC_SLSH, KC_MINS,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
                         KC_LGUI, DEL_ALT,   TT(3),  KC_SPC,   KC_MS_BTN4,             KC_MS_BTN5,  KC_ENT, KC_TRNS, KC_BSPC,  KC_ESC,
-                                                                 XXXXXXX, KC_MS_BTN3,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+                                                                 XXXXXXX, _______,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
   [_TRACKBALL] = LAYOUT(
@@ -76,9 +80,45 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       XXXXXXX, XXXXXXX, RGB_VAD, RGB_SAD, RGB_HUD,RGB_RMOD,                                       SCRL_IN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
                         KC_LGUI, DEL_ALT, KC_TRNS,  KC_SPC,   KC_MS_BTN1,             KC_MS_BTN2,  KC_ENT, RS_HENK, KC_BSPC,  KC_ESC,
-                                                                 XXXXXXX, KC_MS_BTN3,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+                                                                 XXXXXXX, _______,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
-    )
+    ),
+   [_L5] = LAYOUT(
+  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+      QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+                        _______, _______, _______, _______,      _______,           _______,  _______, _______, _______,  _______,
+                                                                 XXXXXXX, _______,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+                                                            //`--------------'  `--------------'
+    ),
+   [_L6] = LAYOUT(
+  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+      QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+                        _______, _______, _______, _______,      _______,           _______,  _______, _______, _______,  _______,
+                                                                 XXXXXXX, _______,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+                                                            //`--------------'  `--------------'
+    ),
+   [_L7] = LAYOUT(
+  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+      QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+                        _______, _______, _______, _______,      _______,           _______,  _______, _______, _______,  _______,
+                                                                 XXXXXXX, _______,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+                                                            //`--------------'  `--------------'
+    ),
 };
 
 // Same function on all layers for now.
@@ -88,6 +128,10 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [1] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
     [2] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
     [3] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
+    [4] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
+    [5] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
+    [6] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
+    [7] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
 };
 #endif
 
@@ -97,25 +141,25 @@ layer_state_t layer_state_set_user(layer_state_t state) {
         #ifdef RGBLIGHT_ENABLE
         rgblight_sethsv_range(HSV_BLUE, 0, 2);
         #endif
-        cocot_set_scroll_mode(true);
+        //cocot_setcroll_mode(true);
         break;
     case _RAISE:
         #ifdef RGBLIGHT_ENABLE
         rgblight_sethsv_range(HSV_RED, 0, 2);
         #endif
-        cocot_set_scroll_mode(true);
+        //cocot_set_scroll_mode(true);
         break;
     case _TRACKBALL:
         #ifdef RGBLIGHT_ENABLE
         rgblight_sethsv_range(HSV_GREEN, 0, 2);
         #endif
-        cocot_set_scroll_mode(false);
+        //cocot_set_scroll_mode(false);
         break;
     default:
         #ifdef RGBLIGHT_ENABLE
         rgblight_sethsv_range( 0, 0, 0, 0, 2);
         #endif
-        cocot_set_scroll_mode(false);
+        //cocot_set_scroll_mode(false);
         break;
     }
     #ifdef RGBLIGHT_ENABLE

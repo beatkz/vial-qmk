@@ -11,10 +11,10 @@
 #    define I2C_DRIVER I2CD1
 #endif
 #ifndef I2C1_SDA_PIN
-#    define I2C1_SDA_PIN D1
+#    define I2C1_SDA_PIN GP2
 #endif
 #ifndef I2C1_SCL_PIN
-#    define I2C1_SCL_PIN D0
+#    define I2C1_SCL_PIN GP3
 #endif
 
 /**======================

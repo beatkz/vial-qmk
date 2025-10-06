@@ -17,16 +17,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include QMK_KEYBOARD_H
 
+// NICOLA親指シフト
+#include "keymap_japanese.h"
+#include "sendstring_japanese.h"
+#include "nicola.h"
+NGKEYS nicola_keys;
+
+enum NICOLA_Stats_Keys {
+    NCL_OFF = QK_KB_7,
+    NCL_ON
+};
+// NICOLA親指シフト
+
 // Defines names for use in layer keycodes and the keymap
 enum layer_number {
     _BASE,
+    _NICOLA,
     _LOWER,
     _RAISE,
     _TRACKBALL,
     _L4,
-    _L5,
-    _L6,
-    _L7
+    _L5
 };
 
 #define LW_MHEN LT(1,KC_INT5)  // lower
@@ -37,37 +48,49 @@ enum layer_number {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT(
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                          KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  KC_BSPC,
+       KC_ESC,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                          KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  KC_MINS,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                                          KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,
+      KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                                          KC_H,    KC_J,    KC_K,    KC_L, JP_SCLN,  KC_ENT,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                          KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_MINS,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-                        KC_LGUI, DEL_ALT,   LW_MHEN,  KC_SPC, KC_MS_BTN1,             KC_MS_BTN2,  KC_ENT, RS_HENK, KC_BSPC,  KC_ESC,
+                        KC_LALT, KC_LGUI,   LW_MHEN,  KC_SPC,    JP_LBRC,              JP_RBRC,    NCL_ON, KC_BSPC, KC_RGUI, KC_RALT,
                                                                  XXXXXXX,    SCRL_MO,  XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX
+                                                            //`--------------'  `--------------'
+    ),
+   [_NICOLA] = LAYOUT(
+  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+      _______,    NG_Q,    NG_W,    NG_E,    NG_R,    NG_T,                                          NG_Y,    NG_U,    NG_I,    NG_O,    NG_P, _______,
+  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+      _______,    NG_A,    NG_S,    NG_D,    NG_F,    NG_G,                                          NG_H,    NG_J,    NG_K,    NG_L, NG_SCLN, _______,
+  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+      _______,    NG_Z,    NG_X,    NG_C,    NG_V,    NG_B,                                          NG_N,    NG_M, NG_COMM,  NG_DOT, NG_SLSH, _______,
+  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+                        _______, _______, NCL_OFF, NG_SHFTL,     _______,           _______, NG_SHFTR, _______, _______,  _______,
+                                                                 XXXXXXX, _______,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
   [_LOWER] = LAYOUT(
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-       KC_ESC, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                                       KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC,
+   TO(_RAISE),    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                          KC_6,    KC_7,    KC_8,    KC_9,    KC_0,   JP_AT,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      KC_LCTL, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC, KC_COLN, KC_DQUO,
+      _______, _______, _______, MS_BTN2, MS_BTN1, _______,                                       KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, JP_COLN, _______,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      KC_LSFT,  KC_GRV, KC_TILD, KC_NUBS, KC_PIPE, XXXXXXX,                                        KC_EQL, KC_PLUS, KC_LABK, KC_RABK, KC_QUES, KC_UNDS,
+      _______, _______, _______, _______, _______, _______,                                       KC_HOME,  KC_END, S(KC_TAB), KC_TAB, _______, _______,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-                        KC_LGUI, DEL_ALT, KC_TRNS,  KC_SPC,   _______,                  _______,  KC_ENT,   TT(3), KC_BSPC,  KC_ESC,
+                        _______, _______, _______,  _______,   _______,             _______, _______,  KC_DEL, _______, _______,
                                                                  XXXXXXX, _______,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
   [_RAISE] = LAYOUT(
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-       KC_ESC,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                          KC_6,    KC_7,    KC_8,    KC_9,   KC_0,  KC_BSPC,
+    TO(_BASE),   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                        KC_NUM,   KC_P7,   KC_P8,   KC_P9, KC_PPLS, KC_PMNS,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      KC_LCTL,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                        KC_APP,   KC_UP,S(KC_INT1), KC_UNDS, KC_DQUO, KC_COLN,
+      _______,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,                                        KC_TAB,   KC_P4,   KC_P5,   KC_P6, KC_PAST, KC_PENT,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      KC_LSFT,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,                                       KC_LEFT, KC_DOWN, KC_RGHT,  KC_DOT, KC_SLSH, KC_MINS,
+      _______, _______, _______, _______,  KC_F11,  KC_F12,                                       _______,   KC_P1,   KC_P2,   KC_P3, KC_PSLS, KC_MINS,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-                        KC_LGUI, DEL_ALT,   TT(3),  KC_SPC,   KC_MS_BTN4,             KC_MS_BTN5,  KC_ENT, KC_TRNS, KC_BSPC,  KC_ESC,
+                        _______, _______,   TT(4), _______,      _______,           _______,   KC_P0, _______, KC_PDOT,  _______,
                                                                  XXXXXXX, _______,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
@@ -83,6 +106,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                  XXXXXXX, _______,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
+   [_L4] = LAYOUT(
+  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+      QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+                        _______, _______, _______, _______,      _______,           _______,  _______, _______, _______,  _______,
+                                                                 XXXXXXX, _______,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+                                                            //`--------------'  `--------------'
+    ),
    [_L5] = LAYOUT(
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
@@ -95,30 +130,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                  XXXXXXX, _______,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
-   [_L6] = LAYOUT(
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-                        _______, _______, _______, _______,      _______,           _______,  _______, _______, _______,  _______,
-                                                                 XXXXXXX, _______,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
-                                                            //`--------------'  `--------------'
-    ),
-   [_L7] = LAYOUT(
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-                        _______, _______, _______, _______,      _______,           _______,  _______, _______, _______,  _______,
-                                                                 XXXXXXX, _______,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
-                                                            //`--------------'  `--------------'
-    ),
+
 };
 
 // Same function on all layers for now.
@@ -131,7 +143,6 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [4] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
     [5] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
     [6] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
-    [7] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
 };
 #endif
 
@@ -176,3 +187,60 @@ bool oled_task_user(void) {
     return false;
 }
 #endif
+
+static bool fn_pressed = false;
+static uint16_t fn_pressed_time = 0;
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+
+    // NICOLA親指シフト
+    case NCL_OFF:
+      if (record->event.pressed) {
+        fn_pressed = true;
+        fn_pressed_time = record->event.time;
+
+        layer_on(_LOWER);
+      } else {
+        layer_off(_LOWER);
+
+        if(fn_pressed
+        && (TIMER_DIFF_16(record->event.time, fn_pressed_time) < TAPPING_TERM)){
+            nicola_off();
+        }
+        fn_pressed = false;
+      }
+      return false;
+      break;
+    case NCL_ON:
+      if (record->event.pressed) {
+        nicola_on();
+        fn_pressed = false;
+      }
+      return false;
+      break;
+    // NICOLA親指シフト
+
+    default:
+        if(record->event.pressed){
+            fn_pressed = false;
+        }
+        break;
+  }
+
+  // NICOLA親指シフト
+  bool a = true;
+  if (nicola_state()) {
+    nicola_mode(keycode, record);
+    a = process_nicola(keycode, record);
+  }
+  if (a == false) return false;
+  // NICOLA親指シフト
+    return true;
+}
+
+void matrix_init_user(void) {
+  // NICOLA親指シフト
+  set_nicola(_NICOLA);
+  // NICOLA親指シフト
+}

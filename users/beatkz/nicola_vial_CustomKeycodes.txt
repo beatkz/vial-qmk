@@ -1,0 +1,351 @@
+[Custom keycodes in QMK](https://get.vial.today/docs/custom_keycode.html)
+
+```JSON
+    "customKeycodes":[
+        {"name": "NclOff",
+        "title": "Turn off NICOLA",
+        "shortName": "NCL_OFF"
+        },
+        {"name": "NclOn",
+        "title": "Turn on NICOLA",
+        "shortName": "NCL_ON"
+        }
+    ],
+```
+
+```JSON
+    "customKeycodes":[
+        {"name": "ChKOff",
+        "title": "Turn off ChordKana",
+        "shortName": "CHK_OFF"
+        },
+        {"name": "ChKOn",
+        "title": "Turn on ChordKana",
+        "shortName": "CHK_ON"
+        },
+        {"name": "あ",
+        "title": "input「あ」",
+        "shortName": "あ"
+        },
+        {"name": "い",
+        "title": "input「い」",
+        "shortName": "い"
+        },
+        {"name": "う",
+        "title": "input「う」",
+        "shortName": "う"
+        },
+        {"name": "え",
+        "title": "input「え」",
+        "shortName": "え"
+        },
+        {"name": "お",
+        "title": "input「お」",
+        "shortName": "お"
+        },
+        {"name": "か",
+        "title": "input「か」",
+        "shortName": "か"
+        },
+        {"name": "き",
+        "title": "input「き」",
+        "shortName": "き"
+        },
+        {"name": "く",
+        "title": "input「く」",
+        "shortName": "く"
+        },
+        {"name": "け",
+        "title": "input「け」",
+        "shortName": "け"
+        },
+        {"name": "こ",
+        "title": "input「こ」",
+        "shortName": "こ"
+        },
+        {"name": "さ",
+        "title": "input「さ」",
+        "shortName": "さ"
+        },
+        {"name": "し",
+        "title": "input「し」",
+        "shortName": "し"
+        },
+        {"name": "す",
+        "title": "input「す」",
+        "shortName": "す"
+        },
+        {"name": "せ",
+        "title": "input「せ」",
+        "shortName": "せ"
+        },
+        {"name": "そ",
+        "title": "input「そ」",
+        "shortName": "そ"
+        },
+        {"name": "た",
+        "title": "input「た」",
+        "shortName": "た"
+        },
+        {"name": "ち",
+        "title": "input「ち」",
+        "shortName": "ち"
+        },
+        {"name": "つ",
+        "title": "input「つ」",
+        "shortName": "つ"
+        },
+        {"name": "て",
+        "title": "input「て」",
+        "shortName": "て"
+        },
+        {"name": "と",
+        "title": "input「と」",
+        "shortName": "と"
+        },
+        {"name": "な",
+        "title": "input「な」",
+        "shortName": "な"
+        },
+        {"name": "に",
+        "title": "input「に」",
+        "shortName": "に"
+        },
+        {"name": "ぬ",
+        "title": "input「ぬ」",
+        "shortName": "ぬ"
+        },
+        {"name": "ね",
+        "title": "input「ね」",
+        "shortName": "ね"
+        },
+        {"name": "の",
+        "title": "input「の」",
+        "shortName": "の"
+        },
+        {"name": "は",
+        "title": "input「は」",
+        "shortName": "は"
+        },
+        {"name": "ひ",
+        "title": "input「ひ」",
+        "shortName": "ひ"
+        },
+        {"name": "ふ",
+        "title": "input「ふ」",
+        "shortName": "ふ"
+        },
+        {"name": "へ",
+        "title": "input「へ」",
+        "shortName": "へ"
+        },
+        {"name": "ほ",
+        "title": "input「ほ」",
+        "shortName": "ほ"
+        },
+        {"name": "ま",
+        "title": "input「ま」",
+        "shortName": "ま"
+        },
+        {"name": "み",
+        "title": "input「み」",
+        "shortName": "み"
+        },
+        {"name": "む",
+        "title": "input「む」",
+        "shortName": "む"
+        },
+        {"name": "め",
+        "title": "input「め」",
+        "shortName": "め"
+        },
+        {"name": "も",
+        "title": "input「も」",
+        "shortName": "も"
+        },
+        {"name": "や",
+        "title": "input「や」",
+        "shortName": "や"
+        },
+        {"name": "ゆ",
+        "title": "input「ゆ」",
+        "shortName": "ゆ"
+        },
+        {"name": "よ",
+        "title": "input「よ」",
+        "shortName": "よ"
+        },
+        {"name": "ら",
+        "title": "input「ら」",
+        "shortName": "ら"
+        },
+        {"name": "り",
+        "title": "input「り」",
+        "shortName": "り"
+        },
+        {"name": "る",
+        "title": "input「る」",
+        "shortName": "る"
+        },
+        {"name": "れ",
+        "title": "input「れ」",
+        "shortName": "れ"
+        },
+        {"name": "ろ",
+        "title": "input「ろ」",
+        "shortName": "ろ"
+        },
+        {"name": "わ",
+        "title": "input「わ」",
+        "shortName": "わ"
+        },
+        {"name": "を",
+        "title": "input「を」",
+        "shortName": "を"
+        },
+        {"name": "ん",
+        "title": "input「ん」",
+        "shortName": "ん"
+        },
+        {"name": "ぁ",
+        "title": "input「ぁ」",
+        "shortName": "ぁ"
+        },
+        {"name": "ぃ",
+        "title": "input「ぃ」",
+        "shortName": "ぃ"
+        },
+        {"name": "ぅ",
+        "title": "input「ぅ」",
+        "shortName": "ぅ"
+        },
+        {"name": "ぇ",
+        "title": "input「ぇ」",
+        "shortName": "ぇ"
+        },
+        {"name": "ぉ",
+        "title": "input「ぉ」",
+        "shortName": "ぉ"
+        },
+        {"name": "ゃ",
+        "title": "input「ゃ」",
+        "shortName": "ゃ"
+        },
+        {"name": "ゅ",
+        "title": "input「ゅ」",
+        "shortName": "ゅ"
+        },
+        {"name": "ょ",
+        "title": "input「ょ」",
+        "shortName": "ょ"
+        },
+        {"name": "っ",
+        "title": "input「っ」",
+        "shortName": "っ"
+        },
+        {"name": "ー",
+        "title": "input「ー」",
+        "shortName": "ー"
+        },
+        {"name": "が",
+        "title": "input「が」",
+        "shortName": "が"
+        },
+        {"name": "ぎ",
+        "title": "input「ぎ」",
+        "shortName": "ぎ"
+        },
+        {"name": "ぐ",
+        "title": "input「ぐ」",
+        "shortName": "ぐ"
+        },
+        {"name": "げ",
+        "title": "input「げ」",
+        "shortName": "げ"
+        },
+        {"name": "ご",
+        "title": "input「ご」",
+        "shortName": "ご"
+        },
+        {"name": "ざ",
+        "title": "input「ざ」",
+        "shortName": "ざ"
+        },
+        {"name": "じ",
+        "title": "input「じ」",
+        "shortName": "じ"
+        },
+        {"name": "ず",
+        "title": "input「ず」",
+        "shortName": "ず"
+        },
+        {"name": "ぜ",
+        "title": "input「ぜ」",
+        "shortName": "ぜ"
+        },
+        {"name": "ぞ",
+        "title": "input「ぞ」",
+        "shortName": "ぞ"
+        },
+        {"name": "だ",
+        "title": "input「だ」",
+        "shortName": "だ"
+        },
+        {"name": "ぢ",
+        "title": "input「ぢ」",
+        "shortName": "ぢ"
+        },
+        {"name": "づ",
+        "title": "input「づ」",
+        "shortName": "づ"
+        },
+        {"name": "で",
+        "title": "input「で」",
+        "shortName": "で"
+        },
+        {"name": "ど",
+        "title": "input「ど」",
+        "shortName": "ど"
+        },
+        {"name": "ば",
+        "title": "input「ば」",
+        "shortName": "ば"
+        },
+        {"name": "び",
+        "title": "input「び」",
+        "shortName": "び"
+        },
+        {"name": "ぶ",
+        "title": "input「ぶ」",
+        "shortName": "ぶ"
+        },
+        {"name": "べ",
+        "title": "input「べ」",
+        "shortName": "べ"
+        },
+        {"name": "ぼ",
+        "title": "input「ぼ」",
+        "shortName": "ぼ"
+        },
+        {"name": "ぱ",
+        "title": "input「ぱ」",
+        "shortName": "ぱ"
+        },
+        {"name": "ぴ",
+        "title": "input「ぴ」",
+        "shortName": "ぴ"
+        },
+        {"name": "ぷ",
+        "title": "input「ぷ」",
+        "shortName": "ぷ"
+        },
+        {"name": "ぺ",
+        "title": "input「ぺ」",
+        "shortName": "ぺ"
+        },
+        {"name": "ぽ",
+        "title": "input「ぽ」",
+        "shortName": "ぽ"
+        }
+    ],
+```

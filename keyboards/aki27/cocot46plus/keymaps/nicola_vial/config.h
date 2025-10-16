@@ -9,3 +9,12 @@
 #define POINTING_DEVICE_AUTO_MOUSE_ENABLE
 #define AUTO_MOUSE_DEFAULT_LAYER 3
 #define DYNAMIC_KEYMAP_LAYER_COUNT 7
+// NICOLA親指シフト
+#define TAPPING_TERM 180
+
+#ifdef __APPLE__
+#define OS_MAC
+#else
+#define OS_WINDOWS
+#endif
+// NICOLA親指シフト

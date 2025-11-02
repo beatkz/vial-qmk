@@ -1,6 +1,13 @@
 VIA_ENABLE = yes
 VIAL_ENABLE = yes
 
+COMBO_ENABLE = no
+REPEAT_KEY_ENABLE  = no
+EXTRAKEY_ENABLE = no
+CONSOLE_ENABLE = no
+
 LTO_ENABLE = yes
+OPTIMIZE_SIZE = yes
+DEBUG_DISABLE = yes
 SRC += nicola.c \
 		key_duration.c

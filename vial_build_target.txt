@@ -12,6 +12,8 @@
 #salicylic_acid3/7skb:nicola_vial
 #salicylic_acid3/o51go:nicola_vial
 kagizaraya/chidori:nicola_vial
+omkbd/runner3680/5x8:nicola_vial
+omkbd/runner3680/5x8:vial
 #-----
 #ARMチップ搭載KB
 aki27/cocot46plus:nicola_vial
@@ -19,6 +21,8 @@ aki27/cocot46plus:nicola_vial
 #salicylic_acid3/jisplit89:nicola_vial_kb2040
 #salicylic_acid3/ergoarrows:nicola_vial_kb2040
 #salicylic_acid3/7skb:nicola_vial_kb2040
+omkbd/runner3680/5x8:nicola_vial_kb2040
+omkbd/runner3680/5x8:vial_kb2040
 #-----
 #ビルドターゲットがない表示が出たもの
 #ヒント：info.jsonからkeyboard.jsonにリネーム

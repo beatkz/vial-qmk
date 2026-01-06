@@ -14,7 +14,6 @@ ifeq ($(KEYBOARD), keebio/nyquist/rev1)
     VIALRGB_ENABLE      = no
     COMBO_ENABLE        = no
     QMK_SETTINGS        = no
-    REPEAT_KEY_ENABLE   = no
 endif
 
 #REV2
@@ -25,7 +24,6 @@ ifeq ($(KEYBOARD), keebio/nyquist/rev2)
     VIALRGB_ENABLE      = no
     COMBO_ENABLE        = no
     QMK_SETTINGS        = no
-    REPEAT_KEY_ENABLE   = no
 endif
 
 #REV3
@@ -36,7 +34,6 @@ ifeq ($(KEYBOARD), keebio/nyquist/rev3)
     VIALRGB_ENABLE      = no
     COMBO_ENABLE        = no
     QMK_SETTINGS        = no
-    REPEAT_KEY_ENABLE   = no
 endif
 
 #REV4
@@ -47,7 +44,6 @@ ifeq ($(KEYBOARD), keebio/nyquist/rev4)
     VIALRGB_ENABLE      = yes
     COMBO_ENABLE        = yes
     QMK_SETTINGS        = yes
-    REPEAT_KEY_ENABLE   = yes
 endif
 
 #REV5
@@ -58,6 +54,4 @@ ifeq ($(KEYBOARD), keebio/nyquist/rev5)
     VIALRGB_ENABLE      = yes
     COMBO_ENABLE        = yes
     QMK_SETTINGS        = yes
-    REPEAT_KEY_ENABLE   = yes
 endif
-

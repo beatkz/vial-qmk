@@ -247,10 +247,10 @@ static void print_status(void) {
 
 #if !defined(NO_PRINT) && !defined(USER_PRINT)
 static void print_eeconfig(void) {
-    xprintf("eeconfig:\ndefault_layer: %" PRIu32 "\n", (uint32_t)eeconfig_read_default_layer());
+    xprintf("eeconfig:\ndefault_layer: %u\n", eeconfig_read_default_layer());
 
     debug_config_t dc;
-    eeconfig_read_debug(&dc);
+    dc.raw = eeconfig_read_debug();
     xprintf(/* clang-format off */
 
         "debug_config.raw: %02X\n"
@@ -267,7 +267,7 @@ static void print_eeconfig(void) {
     ); /* clang-format on */
 
     keymap_config_t kc;
-    eeconfig_read_keymap(&kc);
+    kc.raw = eeconfig_read_keymap();
     xprintf(/* clang-format off */
 
         "keymap_config.raw: %02X\n"
@@ -300,7 +300,7 @@ static void print_eeconfig(void) {
 #    ifdef BACKLIGHT_ENABLE
 
     backlight_config_t bc;
-    eeconfig_read_backlight(&bc);
+    bc.raw = eeconfig_read_backlight();
     xprintf(/* clang-format off */
         "backlight_config"
 

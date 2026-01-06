@@ -34,7 +34,7 @@ fi
 
 if [ $UPD_MSYS = "TRUE" ] ; then
     #Update for QMK MSYS/MSYS
-    pacman -Syu
+    pacman -Syu --noconfirm
 fi
 
 if [ $UPD_DNF = "TRUE" ] ; then
@@ -45,6 +45,6 @@ fi
 if [ $UPD_GIT = "TRUE" ] ; then
     #Update for Vial Repo
     git fetch --all
-    git merge upstream/vial
+    git merge --no-edit upstream/vial
     make git-submodule
 fi

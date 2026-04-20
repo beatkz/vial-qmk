@@ -1,0 +1,9 @@
+#ここにハードリンクするキーボードフォルダーキーマップまでのフルパスを1行ずつ書く
+#例：/home/qmk/kbfw/qmk/us_via/keyboards/foo/barboard21
+/home/qmk/kbfw/vial-qmk/keyboards/kagizaraya/chidori/keymaps/nicola_vial
+/home/qmk/kbfw/vial-qmk/keyboards/omkbd/runner3680/5x8/keymaps/nicola_vial
+#サリチル酸氏作
+/home/qmk/kbfw/vial-qmk/keyboards/salicylic_acid3/o51go/keymaps/nicola_vial
+#Armチップ搭載機種
+/home/qmk/kbfw/vial-qmk/keyboards/aki27/cocot46plus/keymaps/nicola_vial
+/home/qmk/kbfw/vial-qmk/keyboards/omkbd/runner3680/5x8/keymaps/nicola_vial_kb2040

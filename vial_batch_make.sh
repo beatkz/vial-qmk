@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # VIALディレクトリをここに入力
-VIAL_ROOT="/d/OSSProj/kbfw/vial-qmk"
+#VIAL_ROOT="/d/OSSProj/kbfw/vial-qmk"
+VIAL_ROOT="/home/qmk/kbfw/vial-qmk"
 
 # 入力ファイル
 INPUT_FILE="vial_build_target.txt"
@@ -18,6 +19,12 @@ if [[ ! -f "$INPUT_FILE" ]]; then
     echo "エラー: $INPUT_FILE が見つかりません。"
     exit 1
 fi
+
+# 並列ビルドのジョブ数をCPUコア数+1に設定
+#JOBS=$(($(grep cpu.cores /proc/cpuinfo | sort -u | sed 's/[^0-9]//g') + 1))
+
+# 並列ビルドのジョブ数をスレッド数+1に設定
+JOBS=$(($(grep processor /proc/cpuinfo | wc -l) + 1))
 
 # エラーを記録する配列
 declare -a errors
@@ -44,7 +51,7 @@ while IFS= read -r line; do
 
     # make コマンドを実行
     echo "makeコマンド実行中： $target"
-    make "$target" QMK_FIRMWARE_ROOT="$VIAL_ROOT"
+    make "$target" -j "$JOBS" QMK_FIRMWARE_ROOT="$VIAL_ROOT"
     if [[ $? -ne 0 ]]; then
         errors+=("$target")
     fi

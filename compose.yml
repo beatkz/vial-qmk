@@ -1,0 +1,11 @@
+services:
+  build:
+    build:
+      context: .
+    container_name: vial-daily-build-container
+    volumes:
+      - .:/qmk_firmware
+    working_dir: /qmk_firmware
+    command: bash vial_batch_make.sh
+    environment:
+      - SKIP_GIT=true

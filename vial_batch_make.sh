@@ -1,8 +1,7 @@
 #!/bin/bash
 
 # VIALディレクトリをここに入力
-#VIAL_ROOT="/d/OSSProj/kbfw/vial-qmk"
-VIAL_ROOT="/home/qmk/kbfw/vial-qmk"
+VIAL_ROOT="/qmk_firmware"
 
 # 入力ファイル
 INPUT_FILE="vial_build_target.txt"
@@ -20,9 +19,6 @@ if [[ ! -f "$INPUT_FILE" ]]; then
     exit 1
 fi
 
-# 並列ビルドのジョブ数をCPUコア数+1に設定
-#JOBS=$(($(grep cpu.cores /proc/cpuinfo | sort -u | sed 's/[^0-9]//g') + 1))
-
 # 並列ビルドのジョブ数をスレッド数+1に設定
 JOBS=$(($(grep processor /proc/cpuinfo | wc -l) + 1))
 
@@ -39,19 +35,12 @@ while IFS= read -r line; do
     # 行を解析（カンマで分割）
     target=$(echo "$line" | cut -d',' -f1)
 
-    # VIAL ファームウェアのディレクトリが存在するか確認
-    if [[ ! -d "$VIAL_ROOT" ]]; then
-        echo "エラー: VIAL ファームウェアディレクトリ $VIAL_ROOT が見つかりません。"
-        errors+=("ディレクトリエラー: $target")
-        continue
-    fi
-
     # スクラッチビルド実行のため、ビルドごとにcleanを実行する
-    make clean QMK_FIRMWARE_ROOT="$VIAL_ROOT"
+    make clean
 
     # make コマンドを実行
     echo "makeコマンド実行中： $target"
-    make "$target" -j "$JOBS" QMK_FIRMWARE_ROOT="$VIAL_ROOT"
+    make "$target" -j "$JOBS"
     if [[ $? -ne 0 ]]; then
         errors+=("$target")
     fi

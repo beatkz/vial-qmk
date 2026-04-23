@@ -4,7 +4,7 @@
 #-----
 #AVRチップ搭載KB
 kagizaraya/chidori:nicola_vial
-omkbd/runner3680/5x8:nicola_vial
+#omkbd/runner3680/5x8:nicola_vial
 omkbd/runner3680/5x8:vial
 #-----
 #ARMチップ搭載KB

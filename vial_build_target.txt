@@ -11,6 +11,7 @@ omkbd/runner3680/5x8:vial
 aki27/cocot46plus:nicola_vial
 omkbd/runner3680/5x8:nicola_vial_kb2040
 omkbd/runner3680/5x8:vial_kb2040
+geek_rabb1t/futaba:nicola_vial
 #-----
 #ビルドターゲットがない表示が出たもの
 #ヒント：info.jsonからkeyboard.jsonにリネーム

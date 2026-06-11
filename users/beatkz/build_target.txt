@@ -7,3 +7,4 @@ D:\OSSProj\kbfw\vial-qmk\keyboards\salicylic_acid3\o51go\keymaps\nicola_vial
 #Armチップ搭載機種
 D:\OSSProj\kbfw\vial-qmk\keyboards\aki27\cocot46plus\keymaps\nicola_vial
 D:\OSSProj\kbfw\vial-qmk\keyboards\omkbd\runner3680\5x8\keymaps\nicola_vial_kb2040
+D:\OSSProj\kbfw\vial-qmk\keyboards\geek_rabb1t\futaba\keymaps\nicola_vial

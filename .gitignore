@@ -116,3 +116,10 @@ user_song_list.h
 compile_commands.json
 .clangd/
 .cache/
+
+# nicola_vial: exclude depencency links
+/keyboards/**/keymaps/*/nicola.c
+/keyboards/**/keymaps/*/nicola.h
+/keyboards/**/keymaps/*/key_duration.c
+/keyboards/**/keymaps/*/key_duration_arm.c
+/keyboards/**/keymaps/*/key_duration.h

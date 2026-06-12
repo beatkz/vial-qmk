@@ -10,5 +10,5 @@ while IFS= read -r k; do
     [[ -z "$k" || "$k" =~ ^# ]] && continue
     
     echo "$k"
-    bash mksymlink.sh "$k"
+    bash rmdepmod.sh "$k"
 done < build_target_linux.txt

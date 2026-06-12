@@ -19,8 +19,8 @@ if [[ ! -f "$INPUT_FILE" ]]; then
     exit 1
 fi
 
-# 並列ビルドのジョブ数をスレッド数+1に設定
-JOBS=$(($(grep processor /proc/cpuinfo | wc -l) + 1))
+# 並列ビルドのジョブ数をコア数+1に設定
+JOBS=$(($(grep cpu.cores /proc/cpuinfo | sort -u | sed 's/[^0-9]//g') + 1))
 
 # エラーを記録する配列
 declare -a errors

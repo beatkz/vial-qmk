@@ -13,7 +13,7 @@ omkbd/runner3680/5x8:nicola_vial_kb2040
 omkbd/runner3680/5x8:vial_kb2040
 geek_rabb1t/futaba:nicola_vial
 #keyball/keyball39:bmp
-keyball_rp2040/keyball39:vial
+#keyball_rp2040/keyball39:vial
 #-----
 #ビルドターゲットがない表示が出たもの
 #ヒント：info.jsonからkeyboard.jsonにリネーム

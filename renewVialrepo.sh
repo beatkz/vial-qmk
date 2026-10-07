@@ -2,8 +2,8 @@
 
 if [ "$#" -ne 1 ]; then
     echo "usage: ./renewVialrepo.sh -amdg"
-    echo "-a -> Update Debian based Distro(apt)"
-    echo "-m -> Update MSYS(for Windows Build Environment)"
+    echo "-a -> Update Debian based Distro(apt) [for QMK-WSL]"
+    echo "-m -> Update MSYS(for Windows Build Environment) [for QMK-MSYS]"
     echo "-d -> Update RHEL based Distro(dnf)"
     echo "-g -> Update Vial Git Repositry(add official repo as 'upstream' first)"
 

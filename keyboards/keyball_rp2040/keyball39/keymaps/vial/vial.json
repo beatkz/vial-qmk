@@ -134,21 +134,6 @@
       "name": "SELWORD",
       "title": "Select word",
       "shortName": "SEL\nWORD"
-    },
-    {
-      "name": "SCRL_MO_VRT",
-      "title": "Enable vertical scroll mode when pressing",
-      "shortName": "SCRL\nMO VRT"
-    },
-    {
-      "name": "SCRL_MO_HOR",
-      "title": "Enable horizontal scroll mode when pressing",
-      "shortName": "SCRL\nMO HOR"
-    },
-    {
-      "name": "SCRL_MO_FRE",
-      "title": "Enable free scroll mode when pressing",
-      "shortName": "SCRL\nMO FRE"
     }
   ]
 }

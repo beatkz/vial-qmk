@@ -37,10 +37,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // AML設定
 #define POINTING_DEVICE_AUTO_MOUSE_ENABLE
-#define AUTO_MOUSE_DEFAULT_LAYER 8
+#define AUTO_MOUSE_DEFAULT_LAYER 5
 #define AUTO_MOUSE_LAYER_KEEP_TIME 30000 // マウスレイヤーを維持する時間を30秒に設定
 
-#define TAPPING_TERM 180
+#define TAPPING_TERM 220
 #define PERMISSIVE_HOLD
 // タップ→ホールドしたときにタップしたキーコードを連続送信するための待受時間
 #define QUICK_TAP_TERM 150
@@ -71,7 +71,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #undef KEYBALL_SCROLL_DIV_DEFAULT
 // マウス、スクロール速度デフォルト値の設定
 #define KEYBALL_SCROLL_DIV_DEFAULT 5 // スクロール速度 (default: 4)
-#define KEYBALL_CPI_DEFAULT 1400 // マウス速度 (default: 500)
+#define KEYBALL_CPI_DEFAULT 900 // マウス速度 (default: 500)
 
 // バックライトのBreathingエフェクトの最大輝度を30に設定
 // #define RGBLIGHT_EFFECT_BREATHE_MAX 30
@@ -85,14 +85,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGBLIGHT_DEFAULT_SAT 255          // 〃
 #define RGBLIGHT_DEFAULT_VAL 50         // 〃
 
-// USB接続時のタイムアウト時間を0.5秒に設定
-# define SPLIT_USB_TIMEOUT 500 // ミリ秒
+// USB接続時のタイムアウト時間を5秒に設定
+# define SPLIT_USB_TIMEOUT 5000 // ミリ秒
 # define SPLIT_USB_TIMEOUT_POLL 25
 
 // Vialの設定
 #define VIAL_KEYBOARD_UID {0x7C, 0xDC, 0x8F, 0x9A, 0xFA, 0x6B, 0x63, 0xFA}
 #define VIAL_UNLOCK_COMBO_ROWS { 0, 0 }
 #define VIAL_UNLOCK_COMBO_COLS { 0, 1 }
-
-// OS検出のデバウンス時間を400msに設定
-#define OS_DETECTION_DEBOUNCE 400

@@ -12,8 +12,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with this pr
-ogram.  If not, see <http://www.gnu.org/licenses/>.
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #pragma once
@@ -40,7 +39,7 @@ ogram.  If not, see <http://www.gnu.org/licenses/>.
 /// To disable scroll snap feature, define 0 in your config.h
 #ifndef KEYBALL_SCROLLSNAP_ENABLE
 // スクロールモードを垂直をデフォルトとし、水平方向に一定カウント後にフリースクロールとする設定
-#    define KEYBALL_SCROLLSNAP_ENABLE 2 // 元々は2
+#    define KEYBALL_SCROLLSNAP_ENABLE 1 // 元々は2
 #endif
 
 #ifndef KEYBALL_SCROLLSNAP_RESET_TIMER
@@ -122,12 +121,6 @@ enum keyball_keycodes {
     CW_ON    = QK_KB_17, // Toggle Caps Word mode
     SELWORD  = QK_KB_18, // Select word
 
-    // スクロールカスタム
-    SCRL_MO_VRT = QK_KB_19, // Momentary vertical scroll mode
-    SCRL_MO_HOR = QK_KB_20, // Momentary horizontal scroll mode
-    SCRL_MO_FRE = QK_KB_21, // Momentary free scroll mode
-
-
     // User customizable 32 keycodes.
     KEYBALL_SAFE_RANGE = QK_USER_0,
 };
@@ -192,7 +185,6 @@ typedef struct {
 
     uint16_t auto_mouse_layer_timeout;
     layer_state_t last_layer_state;
-    uint16_t total_mouse_movement;
 
     // Buffer to indicate pressing keys.
     char pressing_keys[KEYBALL_OLED_MAX_PRESSING_KEYCODES + 1];
@@ -287,7 +279,3 @@ uint8_t keyball_get_cpi(void);
 /// In addition, if you do not upload SROM, the maximum value will be limited
 /// to 34 (3500CPI).
 void keyball_set_cpi(uint8_t cpi);
-
-#ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE
-void keyball_handle_auto_mouse_layer_change(layer_state_t state);
-#endif

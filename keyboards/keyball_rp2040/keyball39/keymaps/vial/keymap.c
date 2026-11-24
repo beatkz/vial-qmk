@@ -32,23 +32,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "os_detection.h"
 
 // レイヤー定義
-//  Win・Macそれぞれで4レイヤー
-//  - 0/4: デフォルトレイヤー (エメラルドグリーン)
-//  - 1/5: 数値レイヤー (ホワイト)
-//  - 2/6: 記号レイヤー (黄色)
-//  - 3/7: ファンクション・その他便利機能・スクロールレイヤー (青色)
-//  - 8: AMLレイヤー (紫色) + キーボード設定
-// リモート接続ように、DF関数でのデフォルトレイヤー変更も設定する@レイヤー8。 WキーでWindowsモード、MキーでMacモードにする。
-#define _BASE_WIN 0
-#define _NUM_WIN 1
-#define _SYM_WIN 2
-#define _FUNC_WIN 3
-#define _BASE_MAC 4
-#define _NUM_MAC 5
-#define _SYM_MAC 6
-#define _FUNC_MAC 7
-#define _AML 8
-#define _KBD_SET 9
+#define _WINDOWS 0
+#define _LOWER_W 1
+#define _RAISE_W 2
+#define _ADJUST_W 3
+#define _KEYBOARD_W 4
+#define _MAC 5
+#define _LOWER_M 6
+#define _RAISE_M 7
+#define _ADJUST_M 8
+#define _KEYBOARD_M 9
 
 //  Vialではカスタムキーコードはlib/keyball/keyball.hにて定義し、QK_KB_xxとして定義する
 //  enum custom_keycodes {
@@ -125,67 +118,68 @@ os_variant_t host_os;
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // keymap for default (yamaryu211)
-  [_BASE_WIN] = LAYOUT_universal(
+  [_WINDOWS] = LAYOUT_universal(
     KC_Q           , KC_W         , KC_E           , KC_R           , KC_T           ,                                  KC_Y           , KC_U        , KC_I        , KC_O           , KC_P            ,
-    LCTL_T(KC_A)   , LALT_T(KC_S) , LT(_SYM_WIN, KC_D)    , LT(_NUM_WIN, KC_F)    , KC_G           ,                                  KC_H           , LT(_NUM_WIN, KC_J) , LT(_SYM_WIN, KC_K) , LALT_T(KC_L)   , LCTL_T(KC_MINUS),
+    LCTL_T(KC_A)   , LALT_T(KC_S) , LT(2, KC_D)    , LT(1, KC_F)    , KC_G           ,                                  KC_H           , LT(1, KC_J) , LT(2, KC_K) , LALT_T(KC_L)   , LCTL_T(KC_MINUS),
     LSFT_T(KC_Z)   , LGUI_T(KC_X) , KC_C           , KC_V           , KC_B           ,                                  KC_N           , KC_M        , KC_COMM     , LGUI_T(KC_DOT) , LSFT_T(KC_SLSH) ,
-    LT(_NUM_WIN, KC_LNG2) , KC_ESC       , LGUI_T(KC_TAB) , KC_LALT        , LCTL_T(KC_DEL) , LSFT_T(KC_SPACE) , LT(_NUM_WIN,KC_ENT), LT(_SYM_WIN, KC_BSPC) , _______     , _______     , _______        , LT(_FUNC_WIN, KC_LNG1)
+    LT(1, KC_LNG2) , KC_ESC       , LGUI_T(KC_TAB) , KC_LALT        , LCTL_T(KC_DEL) , LSFT_T(KC_SPACE) , LT(1,KC_ENT), LT(2, KC_BSPC) , _______     , _______     , _______        , LT(3, KC_LNG1)
   ),
 
-  [_NUM_WIN] = LAYOUT_universal(
+  [_LOWER_W] = LAYOUT_universal(
     KC_KP_SLASH , KC_7    , KC_8       , KC_9       , KC_KP_ASTERISK ,                      KC_ESC  , KC_NO   , KC_NO    , KC_NO            , LALT(KC_PSCR) ,
     KC_KP_MINUS , KC_4    , KC_5       , KC_6       , KC_KP_PLUS     ,                      KC_LEFT , KC_DOWN , KC_UP    , LALT_T(KC_RIGHT) , _______       ,
     KC_0        , KC_1    , KC_2       , KC_3       , KC_EQUAL       ,                      KC_HOME , KC_PGDN , KC_PGUP  , KC_END           , _______       ,
-    MO(_AML)       , _______ , S(KC_LGUI) , S(KC_LALT) , S(KC_LCTL)     , _______  , _______ , _______ , _______ , _______  , _______          , MO(_AML)
+    MO(4)       , _______ , S(KC_LGUI) , S(KC_LALT) , S(KC_LCTL)     , _______  , _______ , _______ , _______ , _______  , _______          , MO(4)
   ),
 
-  [_SYM_WIN] = LAYOUT_universal(
+  [_RAISE_W] = LAYOUT_universal(
     KC_QUOT , S(KC_QUOT) , S(KC_1)    , S(KC_SLSH) , S(KC_GRAVE) ,                     KC_BSLS , S(KC_LBRC) , S(KC_RBRC) , KC_NO      , S(KC_5)  ,
     S(KC_2) , KC_SCLN    , S(KC_4)    , S(KC_COMM) , S(KC_DOT)   ,                     S(KC_3) , S(KC_9)    , S(KC_0)    , S(KC_BSLS) , KC_EQUAL ,
     KC_NO   , S(KC_8)    , S(KC_SCLN) , S(KC_6)    , KC_GRAVE    ,                     S(KC_7) , KC_LBRC    , KC_RBRC    , KC_NO      , KC_SLSH  ,
     _______ , _______    , _______    , _______    , _______     , _______ , _______ , _______ , _______    , _______    , _______    , _______
   ),
 
-  [_FUNC_WIN] = LAYOUT_universal(
+  [_ADJUST_W] = LAYOUT_universal(
     KC_F10  , KC_F7       , KC_F8   , KC_F9   , KC_NO   ,                     LGUI(KC_TAB) , LCTL(KC_PGUP)   , LCTL(KC_PGDN)  , KC_NO      , LSG(KC_S) ,
     KC_F11  , KC_F4       , KC_F5   , KC_F6   , KC_NO   ,                     LCTL(KC_W)   , LCTL(S(KC_TAB)) , LCTL(KC_TAB)   , LCTL(KC_T) , KC_NO     ,
     KC_F12  , LCTL(KC_F1) , KC_F2   , KC_F3   , KC_NO   ,                     KC_NO        , LALT(KC_LEFT)   , LALT(KC_RIGHT) , KC_NO      , KC_NO     ,
     _______ , _______     , _______ , _______ , _______ , _______ , _______ , _______      , _______         , _______        , _______    , _______
   ),
-  [_BASE_MAC] = LAYOUT_universal(
-    KC_Q           , KC_W         , KC_E           , KC_R            , KC_T           ,                                  KC_Y           , KC_U       , KC_I        , KC_O           , KC_P            ,
-    LCTL_T(KC_A)   , LALT_T(KC_S) , LT(_SYM_MAC, KC_D)    , LT(_NUM_MAC, KC_F)     , KC_G           ,                                  KC_H           , LT(_NUM_MAC, KC_J), LT(_SYM_MAC, KC_K) , LALT_T(KC_L)   , LCTL_T(KC_MINUS),
-    LSFT_T(KC_Z)   , LGUI_T(KC_X) , KC_C           , KC_V            , KC_B           ,                                  KC_N           , KC_M       , KC_COMM     , LGUI_T(KC_DOT) , LSFT_T(KC_SLSH) ,
-    LT(_NUM_MAC, KC_LNG2) , KC_ESC       , LGUI_T(KC_TAB) , KC_LALT         , LCTL_T(KC_DEL) , LSFT_T(KC_SPACE), LT(_NUM_MAC,KC_ENT), LT(_SYM_MAC, KC_BSPC) , _______    , _______     , _______        , LT(_FUNC_MAC, KC_LNG1)
-  ),
-
-  [_NUM_MAC] = LAYOUT_universal(
-    KC_KP_SLASH , KC_7    , KC_8       , KC_9       , KC_KP_ASTERISK ,                      KC_ESC  , KC_NO   , KC_NO    , KC_NO            , LALT(KC_PSCR) ,
-    KC_KP_MINUS , KC_4    , KC_5       , KC_6       , KC_KP_PLUS     ,                      KC_LEFT , KC_DOWN , KC_UP    , LALT_T(KC_RIGHT) , _______       ,
-    KC_0        , KC_1    , KC_2       , KC_3       , KC_EQUAL       ,                      KC_HOME , KC_PGDN , KC_PGUP  , KC_END           , _______       ,
-    MO(_AML)       , _______ , S(KC_LGUI) , S(KC_LALT) , S(KC_LCTL)     , _______  , _______ , _______ , _______ , _______  , _______          , MO(_AML)
-  ),
-
-  [_SYM_MAC] = LAYOUT_universal(
-    KC_QUOT , S(KC_QUOT) , S(KC_1)    , S(KC_SLSH) , S(KC_GRAVE) ,                     KC_BSLS , S(KC_LBRC) , S(KC_RBRC) , KC_NO      , S(KC_5)  ,
-    S(KC_2) , KC_SCLN    , S(KC_4)    , S(KC_COMM) , S(KC_DOT)   ,                     S(KC_3) , S(KC_9)    , S(KC_0)    , S(KC_BSLS) , KC_EQUAL ,
-    KC_NO   , S(KC_8)    , S(KC_SCLN) , S(KC_6)    , KC_GRAVE    ,                     S(KC_7) , KC_LBRC    , KC_RBRC    , KC_NO      , KC_SLSH  ,
-    _______ , _______    , _______    , _______    , _______     , _______ , _______ , _______ , _______    , _______    , _______    , _______
-  ),
-
-  [_FUNC_MAC] = LAYOUT_universal(
-    KC_F10  , KC_F7       , KC_F8   , KC_F9   , KC_NO   ,                     LGUI(KC_TAB) , LCTL(KC_PGUP)   , LCTL(KC_PGDN)  , KC_NO      , LSG(KC_S) ,
-    KC_F11  , KC_F4       , KC_F5   , KC_F6   , KC_NO   ,                     LCTL(KC_W)   , LCTL(S(KC_TAB)) , LCTL(KC_TAB)   , LCTL(KC_T) , KC_NO     ,
-    KC_F12  , LCTL(KC_F1) , KC_F2   , KC_F3   , KC_NO   ,                     KC_NO        , LALT(KC_LEFT)   , LALT(KC_RIGHT) , KC_NO      , KC_NO     ,
-    _______ , _______     , _______ , _______ , _______ , _______ , _______ , _______      , _______         , _______        , _______    , _______
-  ),
-  [_AML] = LAYOUT_universal(
+  [_KEYBOARD_W] = LAYOUT_universal(
     KC_NO    , KC_NO    , KC_NO   , DT_PRNT , SSNP_VRT ,                     KC_BRID , KC_BRIU , KC_MUTE , KC_VOLD , KC_VOLU ,
     CPI_I100 , SCRL_DVI , AML_I50 , DT_UP   , SSNP_HOR ,                     KC_NO   , KC_BTN1 , KC_BTN2 , KC_NO   , _______ ,
     CPI_D100 , SCRL_DVD , AML_D50 , DT_DOWN , SSNP_FRE ,                     KC_NO   , KC_NO   , KC_NO   , KC_NO   ,  EE_CLR ,
     _______  , _______  , _______ , _______ , _______  , _______ , _______ , _______ , _______ , _______ , _______ , _______  
   ),
-  [_KBD_SET] = LAYOUT_universal(
+  [_MAC] = LAYOUT_universal(
+    KC_Q           , KC_W         , KC_E           , KC_R            , KC_T           ,                                  KC_Y           , KC_U       , KC_I        , KC_O           , KC_P            ,
+    LCTL_T(KC_A)   , LALT_T(KC_S) , LT(2, KC_D)    , LT(1, KC_F)     , KC_G           ,                                  KC_H           , LT(1, KC_J), LT(2, KC_K) , LALT_T(KC_L)   , LCTL_T(KC_MINUS),
+    LSFT_T(KC_Z)   , LGUI_T(KC_X) , KC_C           , KC_V            , KC_B           ,                                  KC_N           , KC_M       , KC_COMM     , LGUI_T(KC_DOT) , LSFT_T(KC_SLSH) ,
+    LT(1, KC_LNG2) , KC_ESC       , LGUI_T(KC_TAB) , KC_LALT         , LCTL_T(KC_DEL) , LSFT_T(KC_SPACE), LT(1,KC_ENT) , LT(2, KC_BSPC) , _______    , _______     , _______        , LT(3, KC_LNG1)
+  ),
+
+  [_LOWER_M] = LAYOUT_universal(
+    KC_KP_SLASH , KC_7    , KC_8       , KC_9       , KC_KP_ASTERISK ,                      KC_ESC  , KC_NO   , KC_NO    , KC_NO            , LALT(KC_PSCR) ,
+    KC_KP_MINUS , KC_4    , KC_5       , KC_6       , KC_KP_PLUS     ,                      KC_LEFT , KC_DOWN , KC_UP    , LALT_T(KC_RIGHT) , _______       ,
+    KC_0        , KC_1    , KC_2       , KC_3       , KC_EQUAL       ,                      KC_HOME , KC_PGDN , KC_PGUP  , KC_END           , _______       ,
+    MO(4)       , _______ , S(KC_LGUI) , S(KC_LALT) , S(KC_LCTL)     , _______  , _______ , _______ , _______ , _______  , _______          , MO(4)
+  ),
+
+  [_RAISE_M] = LAYOUT_universal(
+    KC_QUOT , S(KC_QUOT) , S(KC_1)    , S(KC_SLSH) , S(KC_GRAVE) ,                     KC_BSLS , S(KC_LBRC) , S(KC_RBRC) , KC_NO      , S(KC_5)  ,
+    S(KC_2) , KC_SCLN    , S(KC_4)    , S(KC_COMM) , S(KC_DOT)   ,                     S(KC_3) , S(KC_9)    , S(KC_0)    , S(KC_BSLS) , KC_EQUAL ,
+    KC_NO   , S(KC_8)    , S(KC_SCLN) , S(KC_6)    , KC_GRAVE    ,                     S(KC_7) , KC_LBRC    , KC_RBRC    , KC_NO      , KC_SLSH  ,
+    _______ , _______    , _______    , _______    , _______     , _______ , _______ , _______ , _______    , _______    , _______    , _______
+  ),
+
+  [_ADJUST_M] = LAYOUT_universal(
+    KC_F10  , KC_F7       , KC_F8   , KC_F9   , KC_NO   ,                     LGUI(KC_TAB) , LCTL(KC_PGUP)   , LCTL(KC_PGDN)  , KC_NO      , LSG(KC_S) ,
+    KC_F11  , KC_F4       , KC_F5   , KC_F6   , KC_NO   ,                     LCTL(KC_W)   , LCTL(S(KC_TAB)) , LCTL(KC_TAB)   , LCTL(KC_T) , KC_NO     ,
+    KC_F12  , LCTL(KC_F1) , KC_F2   , KC_F3   , KC_NO   ,                     KC_NO        , LALT(KC_LEFT)   , LALT(KC_RIGHT) , KC_NO      , KC_NO     ,
+    _______ , _______     , _______ , _______ , _______ , _______ , _______ , _______      , _______         , _______        , _______    , _______
+  ),
+  // 追加レイヤーの定義
+  [_KEYBOARD_M] = LAYOUT_universal(
     KC_NO    , KC_NO    , KC_NO   , DT_PRNT , SSNP_VRT ,                     KC_BRID , KC_BRIU , KC_MUTE , KC_VOLD , KC_VOLU ,
     CPI_I100 , SCRL_DVI , AML_I50 , DT_UP   , SSNP_HOR ,                     KC_NO   , KC_BTN1 , KC_BTN2 , KC_NO   , _______ ,
     CPI_D100 , SCRL_DVD , AML_D50 , DT_DOWN , SSNP_FRE ,                     KC_NO   , KC_NO   , KC_NO   , KC_NO   ,  EE_CLR ,
@@ -228,63 +222,54 @@ void keyboard_post_init_user() {
   host_os = detected_host_os();
   switch (host_os) {
     case OS_WINDOWS:
-      default_layer_set(1UL << _BASE_WIN);
+      default_layer_set(1UL << _WINDOWS);
       break;
     case OS_MACOS:
     case OS_IOS:
-      default_layer_set(1UL << _BASE_MAC);
+      default_layer_set(1UL << _MAC);
       break;
     case OS_LINUX:
-      default_layer_set(1UL << _BASE_WIN);
+      default_layer_set(1UL << _WINDOWS);
       break;
     default:
-      default_layer_set(1UL << _BASE_WIN);
+      default_layer_set(1UL << _WINDOWS);
   }
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     // Auto enable scroll mode when the highest layer is 3
-    keyball_set_scroll_mode(get_highest_layer(state) == _FUNC_WIN || get_highest_layer(state) == _FUNC_MAC);
-    // AML有効時のhandler
-    #ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE
-     // keyball_keep_auto_mouse_layer_if_needed(state);
-      keyball_handle_auto_mouse_layer_change(state);
-    #endif
-    
+    keyball_set_scroll_mode(get_highest_layer(state) == _ADJUST_W || get_highest_layer(state) == _ADJUST_M);
     // バックライトの色の初期値定義
     uint8_t layer = biton32(state);
     switch (layer) {
-        case _BASE_WIN:
+        case _WINDOWS:
             rgblight_sethsv_noeeprom(106, 255, 50); // HSV_SPRINGGREEN
             rgblight_mode(RGBLIGHT_MODE_BREATHING + 0);
             break;
-        case _BASE_MAC:
+        case _MAC:
             rgblight_sethsv_noeeprom(132, 102, 50); // HSV_AZURE
             rgblight_mode(RGBLIGHT_MODE_BREATHING + 0);
             break;
-        case _NUM_WIN:
-        case _NUM_MAC:
+        case _LOWER_W:
+        case _LOWER_M:
             rgblight_sethsv_noeeprom(0, 0, 50); // HSV_WHITE
             rgblight_mode(RGBLIGHT_MODE_BREATHING + 0);
             break;
-        case _SYM_WIN:
-        case _SYM_MAC:
+        case _RAISE_W:
+        case _RAISE_M:
             rgblight_sethsv_noeeprom(43, 255, 50); // HSV_YELLOW
             rgblight_mode(RGBLIGHT_MODE_BREATHING + 0);
             break;
-        case _FUNC_WIN:
-        case _FUNC_MAC:
+        case _ADJUST_W:
+        case _ADJUST_M:
             rgblight_sethsv_noeeprom(170, 255, 50); // HSV_BLUE
             rgblight_mode(RGBLIGHT_MODE_BREATHING + 0);
             break;
-        case _AML:
+        case _KEYBOARD_W:
+        case _KEYBOARD_M:
             rgblight_sethsv_noeeprom(213, 255, 50); // HSV_MAGENTA
             rgblight_mode(RGBLIGHT_MODE_BREATHING + 0);
-            break;  
-        case _KBD_SET:
-            rgblight_sethsv_noeeprom(21, 255, 50); // HSV_WHITE
-            rgblight_mode(RGBLIGHT_MODE_BREATHING + 0);
-            break;
+            break;            
     }
 
     return state;
@@ -452,31 +437,6 @@ void keyball_oled_render_ballinfo_custom(void) {
     oled_write_char('0' + keyball_get_scroll_div(), false);
 }
 
-#ifdef DYNAMIC_MACRO_ENABLE
-// Dynamic Macros: Record and Replay Macros in Runtime
-// https://github.com/qmk/qmk_firmware/blob/master/docs/feature_dynamic_macros.md
-
-bool isRecording = false;
-// Triggered when you start recording a macro.
-void dynamic_macro_record_start_user(int8_t direction) {
-    isRecording = true;
-}
-
-// Triggered when you play back a macro.
-void dynamic_macro_play_user(int8_t direction) {
-}
-
-// Triggered on each keypress while recording a macro.
-void dynamic_macro_record_key_user(int8_t direction, keyrecord_t *record) {
-}
-
-// Triggered when the macro recording is stopped.
-void dynamic_macro_record_end_user(int8_t direction) {
-    isRecording = false;
-}
-#endif
-
-// OLEDの表示内容のカスタマイズ
 void oledkit_render_info_user(void) {
 //    keyball_oled_render_keyinfo();
     keyball_oled_render_keyinfo_custom();
@@ -895,36 +855,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         caps_word_on();
       }
       return false;
-      break;
-
-    // SCRL_MO_VRT/HOR/FREの実装
-    // スクロールのデフォルトモードは垂直スクロール
-    case SCRL_MO_VRT:
-      keyball_set_scroll_mode(record->event.pressed);
-      if (record->event.pressed) {
-        keyball_set_scrollsnap_mode(KEYBALL_SCROLLSNAP_MODE_VERTICAL);
-      } else {
-        keyball_set_scrollsnap_mode(KEYBALL_SCROLLSNAP_MODE_VERTICAL);
-      }
-      return true;
-      break;
-    case SCRL_MO_HOR:
-      keyball_set_scroll_mode(record->event.pressed);
-      if (record->event.pressed) {
-        keyball_set_scrollsnap_mode(KEYBALL_SCROLLSNAP_MODE_HORIZONTAL);
-      } else {
-        keyball_set_scrollsnap_mode(KEYBALL_SCROLLSNAP_MODE_VERTICAL);
-      }
-      return true;
-      break;
-    case SCRL_MO_FRE:
-      keyball_set_scroll_mode(record->event.pressed);
-      if (record->event.pressed) {
-        keyball_set_scrollsnap_mode(KEYBALL_SCROLLSNAP_MODE_FREE);
-      } else {
-        keyball_set_scrollsnap_mode(KEYBALL_SCROLLSNAP_MODE_VERTICAL);
-      }
-      return true;
       break;
   }
 

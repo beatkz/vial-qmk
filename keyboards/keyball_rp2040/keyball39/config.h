@@ -37,14 +37,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // If your PC does not recognize Keyball, try setting this macro. This macro
 // increases the firmware size by 200 bytes, so it is disabled by default, but
 // it has been reported to work well in such cases.
-#define SPLIT_WATCHDOG_ENABLE
+//#define SPLIT_WATCHDOG_ENABLE
 
 #define SPLIT_TRANSACTION_IDS_KB KEYBALL_GET_INFO, KEYBALL_GET_MOTION, KEYBALL_SET_CPI
 
 // RGB LED settings
 #define WS2812_DI_PIN       GP0
 #ifdef RGBLIGHT_ENABLE
-#    define RGBLED_NUM      48
 #    define RGBLIGHT_LED_COUNT      48
 #    define RGBLED_SPLIT    { 24, 24 }  // (24 + 22)
 #    ifndef RGBLIGHT_LIMIT_VAL
@@ -66,14 +65,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 #ifndef OLED_FONT_H
-#    define OLED_FONT_H "keyboards/keyball/lib/logofont/logofont.c"
+#    define OLED_FONT_H "keyboards/keyball_rp2040/lib/logofont/logofont.c"
 #    define OLED_FONT_START 32
 #    define OLED_FONT_END 195
 #endif
 
-// デフォルトのレイヤー設定上限数を32に設定
 #if !defined(LAYER_STATE_8BIT) && !defined(LAYER_STATE_16BIT) && !defined(LAYER_STATE_32BIT)
-#    define LAYER_STATE_32BIT
+#    define LAYER_STATE_8BIT
 #endif
 
 #define SPI_DRIVER SPID0
